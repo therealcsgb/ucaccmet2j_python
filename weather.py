@@ -1,4 +1,4 @@
-#1
+#Part 1
 #json file including precipitation info
 import json
 with open("C:\\Users\\csgb\\OneDrive\\UCU\\ACCMET2J\\Week 2\\Week2Day2\\ucaccmet2j_python\\precipitation.json") as file:
@@ -30,7 +30,7 @@ total_monthly_precipitation_seattle=[] #turn the values from the dictionary into
 for month in dict_monthly_precipitation:
     total_monthly_precipitation_seattle.append(dict_monthly_precipitation[month])
 
-print(total_monthly_precipitation_seattle)
+print(f'The total precipitation in each month in Seattle in 2010 was {total_monthly_precipitation_seattle}')
 
 Cities = {
     "Seattle" : {
@@ -43,3 +43,24 @@ Cities = {
 with open('results.json', 'w', encoding='utf-8') as file:
      json.dump(Cities, file)
 
+#Part 2
+#2.1 Calculate total yearly precipitation
+total_yearly_precipitation_seattle=0
+for month in total_monthly_precipitation_seattle:
+    total_yearly_precipitation_seattle=total_yearly_precipitation_seattle+month
+
+print(f'The total yearly precipitation in 2010 in Seattle was {total_yearly_precipitation_seattle}')
+
+#2.2 Calculate relative monthly precipitation
+relative_monthly_precipitation_seattle=[]
+for month in total_monthly_precipitation_seattle:
+    relative_monthly_precipitation_seattle.append(float(month)/float(total_yearly_precipitation_seattle))
+
+print(f'The relative precipitation per month in Seattle in 2010 was {relative_monthly_precipitation_seattle}')
+
+#add the new info to the dictionary
+Cities["Seattle"]["total_yearly_precipitation"]=total_yearly_precipitation_seattle 
+Cities["Seattle"]["relative_monthly_precipitation"]=relative_monthly_precipitation_seattle
+
+with open('results.json', 'w', encoding='utf-8') as file:
+     json.dump(Cities, file)
