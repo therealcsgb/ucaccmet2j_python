@@ -32,5 +32,14 @@ for month in dict_monthly_precipitation:
 
 print(total_monthly_precipitation_seattle)
 
+Cities = {
+    "Seattle" : {
+        "station":"GHCND:US1WAKG0038",
+        "state":"WA",
+        "total_monthly_precipitation":total_monthly_precipitation_seattle
+    },
+}
+
 with open('results.json', 'w', encoding='utf-8') as file:
-     json.dump(total_monthly_precipitation_seattle, file)
+     json.dump(Cities, file)
+
